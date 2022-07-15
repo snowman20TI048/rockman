@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded;
 
+    public Transform bulletTran;              // バレットの生成位置の配列
+
+    public GameObject bulletPrefab;              // バレットのプレファブ
+
 
 
 
@@ -123,8 +127,15 @@ public class PlayerController : MonoBehaviour
     {
         // ここからオリジナル
        
-            // Jump(Up + Mid) アニメーションを再生する
+            // Attackアニメーションを再生する
             anim.SetTrigger("Attack");
+
+            GameObject bullet = Instantiate(bulletPrefab, bulletTran);
+        Debug.Log(bullet);
+        Vector3 dir = new Vector3(transform.localScale.x, 0, 0);
+        bullet.GetComponent<BulletController>().Attack(dir); //F12で確認
+        bullet.transform.SetParent(null);    //親子関係を解除
+
     }
 
 

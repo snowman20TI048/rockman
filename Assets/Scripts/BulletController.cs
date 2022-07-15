@@ -13,7 +13,7 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         // 必要なコンポーネントを取得して用意した変数に代入
-        rb = GetComponent<Rigidbody2D>();
+       // rb = GetComponent<Rigidbody2D>();
 
 
 
@@ -21,7 +21,7 @@ public class BulletController : MonoBehaviour
          //ここからオリジナル
                 // アタック
        
-                    Attack();
+                   // Attack();
     }
 
     // Update is called once per frame
@@ -33,12 +33,15 @@ public class BulletController : MonoBehaviour
 
     }
 
-    private void Attack()
+    public void Attack(Vector3 dir)
     {
         // ここからオリジナル
+        // 必要なコンポーネントを取得して用意した変数に代入
+        rb = GetComponent<Rigidbody2D>();
+        // 弾丸を上方向へ移動させる(ジャンプ・浮遊)
+        rb.AddForce( dir * AttackPower);
 
-        // キャラの位置を上方向へ移動させる(ジャンプ・浮遊)
-        rb.AddForce(transform.right * AttackPower);
+        Destroy(gameObject ,5.0f);
 
     }
 
