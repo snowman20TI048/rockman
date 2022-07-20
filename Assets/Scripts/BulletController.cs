@@ -38,11 +38,22 @@ public class BulletController : MonoBehaviour
         // ここからオリジナル
         // 必要なコンポーネントを取得して用意した変数に代入
         rb = GetComponent<Rigidbody2D>();
-        // 弾丸を上方向へ移動させる(ジャンプ・浮遊)
+        // 弾丸をキャラクターの向いている方向へ力を加える
         rb.AddForce( dir * AttackPower);
 
         Destroy(gameObject ,5.0f);
 
+    }
+    
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Enemy")
+        {
+            //Bulletを破壊
+            Destroy(gameObject);
+            //Enemyを破壊
+            Destroy(col.gameObject);
+        }
     }
 
 

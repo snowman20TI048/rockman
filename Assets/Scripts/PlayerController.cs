@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;              // バレットのプレファブ
 
+    [Header("アタック待機時間")]
+    public float loadtime;
+
 
 
 
@@ -87,7 +90,8 @@ public class PlayerController : MonoBehaviour
         // アタック
         if (Input.GetKeyDown(KeyCode.Z))
         {    // InputManager の Jump の項目に登録されているキー入力を判定する
-            Attack();
+             //コルーチン呼び出し
+            StartCoroutine("attack");
         }
 
 
@@ -123,15 +127,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Attack()
+    //コルーチン実行
+    IEnumerator attack()
     {
         // ここからオリジナル
        
             // Attackアニメーションを再生する
             anim.SetTrigger("Attack");
 
-            GameObject bullet = Instantiate(bulletPrefab, bulletTran);
-        Debug.Log(bullet);
+        //0.1秒待機
+        yield return new WaitForSeconds(loadtime);
+
+        GameObject bullet = Instantiate(bulletPrefab, bulletTran);
+       // Debug.Log(bullet);
         Vector3 dir = new Vector3(transform.localScale.x, 0, 0);
         bullet.GetComponent<BulletController>().Attack(dir); //F12で確認
         bullet.transform.SetParent(null);    //親子関係を解除
