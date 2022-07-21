@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    public UIManager UIManager;
 
 
 
@@ -42,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("アタック待機時間")]
     public float loadtime;
+
+    private bool isGameOver = false; //GameOver状態の判定用。trueならゲームオーバー。
 
 
 
@@ -106,6 +109,9 @@ public class PlayerController : MonoBehaviour
 
 
         ////* ここまで *////
+        ///
+
+
 
 
 
@@ -148,8 +154,15 @@ public class PlayerController : MonoBehaviour
 
 
 
+
+
     void FixedUpdate()
     {
+        if(isGameOver == true)
+        {
+            return;
+        }
+
         // 移動
         Move();
     }
@@ -214,4 +227,18 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+
+        //ConsoleビューにisGameOver変数の値を表示する。ここが実行されるとtrueと表示される。
+        Debug.Log(isGameOver);
+
+        //画面外にゲームオーバー表示を行う
+        UIManager.DisplayGameOverInfo();
+    }
+
+
+
 }
