@@ -10,8 +10,14 @@ public class GameOverZone : MonoBehaviour
         {
             col.gameObject.GetComponent<PlayerController>().GameOver();
 
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
         }
+
+        if(col.gameObject.tag == "Enemy")
+        {
+            Destroy(col.gameObject);
+        }
+
     }
 
 }

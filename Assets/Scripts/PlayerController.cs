@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;                      // コンポーネントの取得用
 
+    private bool isAttack;
 
 
 
@@ -101,10 +102,11 @@ public class PlayerController : MonoBehaviour
 
 
         // 接地していない(空中にいる)間で、落下中の場合
-        if (isGrounded == false && rb.velocity.y < 0.15f)
+        if (isGrounded == false && rb.velocity.y < 0.15f && isAttack == false)
         {
             // 落下アニメを繰り返す
             anim.SetTrigger("Fall");
+
         }
 
 
@@ -136,13 +138,14 @@ public class PlayerController : MonoBehaviour
     //コルーチン実行
     IEnumerator attack()
     {
+        isAttack = true;
         // ここからオリジナル
        
             // Attackアニメーションを再生する
             anim.SetTrigger("Attack");
 
         //0.1秒待機
-        yield return new WaitForSeconds(loadtime);
+        yield return new WaitForSeconds(0.15f);
 
         GameObject bullet = Instantiate(bulletPrefab, bulletTran);
        // Debug.Log(bullet);
@@ -150,6 +153,8 @@ public class PlayerController : MonoBehaviour
         bullet.GetComponent<BulletController>().Attack(dir); //F12で確認
         bullet.transform.SetParent(null);    //親子関係を解除
 
+        yield return new WaitForSeconds(loadtime);
+        isAttack = false;
     }
 
 
@@ -233,7 +238,7 @@ public class PlayerController : MonoBehaviour
         isGameOver = true;
 
         //ConsoleビューにisGameOver変数の値を表示する。ここが実行されるとtrueと表示される。
-        Debug.Log(isGameOver);
+        //Debug.Log(isGameOver);
 
         //画面外にゲームオーバー表示を行う
         UIManager.DisplayGameOverInfo();

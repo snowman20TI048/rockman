@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
         canvasGroupInfo.DOFade(1.0f, 1.0f);
 
         //文字列をアニメーションさせて表示
-        txtInfo.DOText("Gane Over ...", 1.0f);
+        txtInfo.DOText("Game Over ...", 1.0f);
 
     }
 
