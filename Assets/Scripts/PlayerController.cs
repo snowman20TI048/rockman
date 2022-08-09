@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isGameOver = false; //GameOver状態の判定用。trueならゲームオーバー。
 
+    private bool isFalling = false;
+
 
 
 
@@ -92,23 +94,29 @@ public class PlayerController : MonoBehaviour
 
         //ここからオリジナル
         // アタック
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && isAttack == false)
         {    // InputManager の Jump の項目に登録されているキー入力を判定する
              //コルーチン呼び出し
-            StartCoroutine("attack");
+            StartCoroutine(attack());
         }
 
 
 
 
         // 接地していない(空中にいる)間で、落下中の場合
-        if (isGrounded == false && rb.velocity.y < 0.15f && isAttack == false)
+        if (isGrounded == false && rb.velocity.y < 0.15f && anim.GetCurrentAnimatorStateInfo(0).IsName("Jump_Fall") == false)// isAttack == false  今動いているアニメーションの名前を確認して、Jump_Fallという名前じゃなかったら、ifの中身 
         {
             // 落下アニメを繰り返す
-            anim.SetTrigger("Fall");
-
+            // anim.SetTrigger("Fall");  //bool型は他の条件が出ない限り続けて動く
+            anim.SetBool("Falling", true);
+            isFalling = true;
         }
 
+        if(isGrounded == true && isFalling == true)
+        {
+            anim.SetBool("Falling", false);
+            isFalling = false;
+        }
 
         ////* ここまで *////
         ///
@@ -139,6 +147,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator attack()
     {
         isAttack = true;
+
+        isFalling = false;
         // ここからオリジナル
        
             // Attackアニメーションを再生する

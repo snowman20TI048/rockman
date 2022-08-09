@@ -28,7 +28,7 @@ public class BossController : MonoBehaviour
             Destroy(col.gameObject);
 
             Hp--;
-            if(Hp == 0)
+            if(Hp <= 0)
             {
                 Destroy(gameObject);
             }
