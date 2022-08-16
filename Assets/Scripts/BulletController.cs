@@ -54,6 +54,13 @@ public class BulletController : MonoBehaviour
             //Enemy‚ð”j‰ó
             Destroy(col.gameObject);
         }
+
+        if (col.gameObject.tag == "Ground")
+        {
+            //Bullet‚ð”j‰ó
+            Destroy(gameObject);
+        }
+
     }
 
 

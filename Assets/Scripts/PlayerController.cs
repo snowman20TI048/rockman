@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isFalling = false;
 
+    [Header("吹き飛ばされる力")]
+    public float knockbackPower;                 // 敵と接触した際に吹き飛ばされる力
 
 
 
@@ -112,7 +114,7 @@ public class PlayerController : MonoBehaviour
             isFalling = true;
         }
 
-        if(isGrounded == true && isFalling == true)
+        if (isGrounded == true && isFalling == true)
         {
             anim.SetBool("Falling", false);
             isFalling = false;
@@ -150,15 +152,15 @@ public class PlayerController : MonoBehaviour
 
         isFalling = false;
         // ここからオリジナル
-       
-            // Attackアニメーションを再生する
-            anim.SetTrigger("Attack");
+
+        // Attackアニメーションを再生する
+        anim.SetTrigger("Attack");
 
         //0.1秒待機
         yield return new WaitForSeconds(0.15f);
 
         GameObject bullet = Instantiate(bulletPrefab, bulletTran);
-       // Debug.Log(bullet);
+        // Debug.Log(bullet);
         Vector3 dir = new Vector3(transform.localScale.x, 0, 0);
         bullet.GetComponent<BulletController>().Attack(dir); //F12で確認
         bullet.transform.SetParent(null);    //親子関係を解除
@@ -173,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(isGameOver == true)
+        if (isGameOver == true)
         {
             return;
         }
@@ -238,10 +240,29 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat("Run", 0.0f);     // ☆　追加  Run アニメーションに対して、0.f の値を情報として渡す。遷移条件が less 0.1 なので、0.1 以下の値を渡すと条件が成立してRun アニメーションが停止される
 
 
-
-
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+
+        // 接触したコライダーを持つゲームオブジェクトのTagがEnemyなら 
+        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Boss")
+        {
+           // Debug.Log("Game Over");
+            GameOver();
+            // キャラと敵の位置から距離と方向を計算
+            Vector3 direction = (transform.position - col.transform.position).normalized;
+
+            // 敵の反対側にキャラを吹き飛ばす
+            transform.position += direction * knockbackPower;
+
+            anim.SetBool("Damage",true);
+        }
+    }
+
+
+
 
     public void GameOver()
     {
@@ -253,7 +274,5 @@ public class PlayerController : MonoBehaviour
         //画面外にゲームオーバー表示を行う
         UIManager.DisplayGameOverInfo();
     }
-
-
 
 }

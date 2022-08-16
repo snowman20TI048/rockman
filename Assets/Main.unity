@@ -2248,6 +2248,7 @@ MonoBehaviour:
   bulletTran: {fileID: 794685036}
   bulletPrefab: {fileID: 6125844563485200950, guid: 608d9a21dda4bbe4d8aeff20b091360c, type: 3}
   loadtime: 0.3
+  knockbackPower: 2
 --- !u!1 &1747109493
 GameObject:
   m_ObjectHideFlags: 0
@@ -4677,3 +4678,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  isGrounded: 1
+  jumpPower: 1000
+  time: 0
+  loadtime: 0
+  span: 3
+  playerController: {fileID: 1734729710}
