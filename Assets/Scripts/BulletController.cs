@@ -55,7 +55,7 @@ public class BulletController : MonoBehaviour
             Destroy(col.gameObject);
         }
 
-        if (col.gameObject.tag == "Ground")
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             //Bullet‚ð”j‰ó
             Destroy(gameObject);
