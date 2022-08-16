@@ -9,6 +9,8 @@ public class BulletController : MonoBehaviour
     private float scale;                         // 向きの設定に利用する
 
     public float AttackPower;                      // アタック力
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +30,7 @@ public class BulletController : MonoBehaviour
     void Update()
     {
 
-       
-        
+
 
     }
 
@@ -41,7 +42,7 @@ public class BulletController : MonoBehaviour
         // 弾丸をキャラクターの向いている方向へ力を加える
         rb.AddForce( dir * AttackPower);
 
-        Destroy(gameObject ,5.0f);
+        Destroy(gameObject , 0.7f);
 
     }
     

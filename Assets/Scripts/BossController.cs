@@ -30,6 +30,9 @@ public class BossController : MonoBehaviour
 
     private float scale;
 
+    private bool character_close;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,17 +58,25 @@ public class BossController : MonoBehaviour
         // Sceneビューに Physics2D.LinecastメソッドのLineを表示する
         Debug.DrawLine(transform.position + transform.up * 0.4f, transform.position - transform.up * 2.0f, Color.red, 1.0f);
 
-
-        this.delta += Time.deltaTime;
-        if (this.delta > this.span)
+        if (transform.position.x - playerController.transform.position.x < 10.0f)
         {
-            this.delta = 0;
-            // ジャンプ
-            if (isGrounded == true)
+            character_close = true;
+        }
+
+
+        if (character_close == true)
+        {
+            this.delta += Time.deltaTime;
+            if (this.delta > this.span)
             {
-                // Debug.Log(isGrounded);
-                Jump();
-                isGrounded = false;
+                this.delta = 0;
+                // ジャンプ
+                if (isGrounded == true)
+                {
+                    // Debug.Log(isGrounded);
+                    Jump();
+                    isGrounded = false;
+                }
             }
         }
        
@@ -75,13 +86,16 @@ public class BossController : MonoBehaviour
     {
         if (col.gameObject.tag == "Bullet")
         {
-            //弾丸を破壊する
-            Destroy(col.gameObject);
-
-            Hp--;
-            if(Hp <= 0)
+            if (character_close == true)
             {
-                Destroy(gameObject);
+                //弾丸を破壊する
+                Destroy(col.gameObject);
+
+                Hp--;
+                if (Hp <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
