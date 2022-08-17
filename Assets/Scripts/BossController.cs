@@ -32,6 +32,8 @@ public class BossController : MonoBehaviour
 
     private bool character_close;
 
+   private bool  isClear = false;
+
 
 
     // Start is called before the first frame update
@@ -79,6 +81,15 @@ public class BossController : MonoBehaviour
                 }
             }
         }
+
+       
+
+       
+
+
+
+
+
        
     }
 
@@ -92,8 +103,11 @@ public class BossController : MonoBehaviour
                 Destroy(col.gameObject);
 
                 Hp--;
-                if (Hp <= 0)
+                if (Hp <= 0 && isClear == false)
                 {
+
+                    Debug.Log("ƒQ[ƒ€ƒNƒŠƒA");
+                    isClear = true;
                     Destroy(gameObject);
                 }
             }

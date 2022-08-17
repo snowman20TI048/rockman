@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
     {
 
         // 接触したコライダーを持つゲームオブジェクトのTagがEnemyなら 
-        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Boss")
+        if (isGameOver == false  && (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Boss") )
         {
            // Debug.Log("Game Over");
             GameOver();
@@ -257,7 +257,8 @@ public class PlayerController : MonoBehaviour
             // 敵の反対側にキャラを吹き飛ばす
             transform.position += direction * knockbackPower;
 
-            anim.SetBool("Damage",true);
+            anim.SetBool("Damage",true);  //ずっと繰り返すためにはbool型のきっかけにする
+
         }
     }
 
