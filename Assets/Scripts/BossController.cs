@@ -34,6 +34,9 @@ public class BossController : MonoBehaviour
 
    private bool  isClear = false;
 
+    public UIManager uiManager;
+
+
 
 
     // Start is called before the first frame update
@@ -107,6 +110,9 @@ public class BossController : MonoBehaviour
                 {
 
                     Debug.Log("ÉQÅ[ÉÄÉNÉäÉA");
+
+                    this.uiManager.GenerateResultPopUp();
+                   
                     isClear = true;
                     Destroy(gameObject);
                 }
