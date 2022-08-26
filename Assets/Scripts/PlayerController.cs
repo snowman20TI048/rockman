@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
     [Header("吹き飛ばされる力")]
     public float knockbackPower;                 // 敵と接触した際に吹き飛ばされる力
 
+    [Header("メインBGM")]
+    [SerializeField]
+    private AudioManager audioManager;              // ヒエラルキーにある AudioManager スクリプトのアタッチされているゲームオブジェクトをアサイン
 
 
     void Start()
@@ -68,6 +71,9 @@ public class PlayerController : MonoBehaviour
 
 
         scale = transform.localScale.x;
+
+        // メイン曲再生
+        StartCoroutine(audioManager.PlayBGM(0));
     }
 
 
