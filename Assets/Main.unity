@@ -3607,6 +3607,7 @@ MonoBehaviour:
   canvasGroupInfo: {fileID: 871369139}
   resultPopUpPrefab: {fileID: 5435047325070657664, guid: 3d6c814c30eaf854d8b080121d71a51a, type: 3}
   canvasTran: {fileID: 1941598235}
+  btnInfo: {fileID: 871369140}
 --- !u!4 &1103759579
 Transform:
   m_ObjectHideFlags: 0
@@ -4844,7 +4845,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734729704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.767, y: -3.176, z: 0}
+  m_LocalPosition: {x: -10.03, y: -1.247, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 794685036}

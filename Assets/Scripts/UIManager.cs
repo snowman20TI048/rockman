@@ -13,17 +13,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroupInfo;
 
-
-    ////* ここから追加 *////
-
     [SerializeField]
     private ResultPopUp resultPopUpPrefab;
 
     [SerializeField]
     private Transform canvasTran;
 
-    ////* ここまで *////
-
+    [SerializeField]
+    private Button btnInfo;
 
     /// <summary>
     /// ゲームオーバー表示
@@ -36,10 +33,13 @@ public class UIManager : MonoBehaviour
 
         // 文字列をアニメーションさせて表示
         txtInfo.DOText("Game Over...", 1.0f);
+
+        btnInfo.onClick.AddListener(RestartGame);
+
+
     }
 
 
-    ////* 新しくメソッドを１つ追加。ここから *////
 
     /// <summary>
     /// ResultPopUpの生成
@@ -51,8 +51,29 @@ public class UIManager : MonoBehaviour
 
         // ResultPopUp の設定を行う
         resultPopUp.SetUpResultPopUp();
+
+        btnInfo.onClick.AddListener(RestartGame);
     }
 
-    ////* ここまで *////
+
+
+    /// <summary>
+    /// タイトルへ戻る
+    /// </summary>
+    public void RestartGame()
+    {
+
+        // ボタンからメソッドを削除(重複クリック防止)
+        btnInfo.onClick.RemoveAllListeners();
+
+       /* // 現在のシーンの名前を取得
+        string sceneName = SceneManager.GetActiveScene().name;
+       */
+        canvasGroupInfo.DOFade(0f, 1.0f)
+            .OnComplete(() => {
+                Debug.Log("Restart");
+                SceneManager.LoadScene("TitleScene");
+            });
+    }
 
 }

@@ -31,7 +31,7 @@ public class ResultPopUp : MonoBehaviour
         // 徐々にResultPopUpを表示
         canvasGroup.DOFade(1.0f, 1.0f);
 
-        // リスタートのメッセージをゆっくりと点滅アニメさせる(学習済の命令です。復習しておきましょう)
+        // リスタートのメッセージをゆっくりと点滅アニメさせる
         canvasGroupRestart.DOFade(0, 1.0f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
 
         // ボタンにメソッドを登録
