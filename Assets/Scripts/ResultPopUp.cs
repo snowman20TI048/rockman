@@ -25,6 +25,7 @@ public class ResultPopUp : MonoBehaviour
     /// <param name="score"></param>
     public void SetUpResultPopUp()
     {
+
         // ç≈èâÇ…ìßñæÇ…Ç∑ÇÈ
         canvasGroup.alpha = 0;
 

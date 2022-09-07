@@ -14,7 +14,7 @@ public class BossController : MonoBehaviour
 
     public bool isGrounded;
 
-    public float jumpPower;                      // ジャンプ・浮遊力
+   // public float jumpPower;                      // ジャンプ・浮遊力
 
     public float time;
     public float loadtime;
@@ -36,7 +36,7 @@ public class BossController : MonoBehaviour
 
     public UIManager uiManager;
 
-
+  
 
 
     // Start is called before the first frame update
@@ -54,8 +54,6 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ////* ここから追加 *////
-
 
         // 地面接地  Physics2D.Linecastメソッドを実行して、Ground Layerとキャラのコライダーとが接地している距離かどうかを確認し、接地しているなら true、接地していないなら false を戻す
         isGrounded = Physics2D.Linecast(transform.position + transform.up * 0.4f, transform.position - transform.up * 2.0f, groundLayer);
@@ -124,6 +122,9 @@ public class BossController : MonoBehaviour
     /// </summary>
     private void Jump()
     {
+        // ランダムな値を取得
+        float randomPower = Random.Range(600f, 1000f);
+
         // ここからオリジナル
         if (isGrounded == true)
         {
@@ -132,13 +133,13 @@ public class BossController : MonoBehaviour
             //rb.AddForce(transform.up * jumpPower,ForceMode2D.Impulse);
             //rb.AddForce(-20 * dir, ForceMode2D.Impulse);
             if (transform.position.x > playerController.transform.position.x) {
-                rb.AddForce(new Vector3(-1, 1, 0) * jumpPower, ForceMode2D.Impulse);
+                rb.AddForce(new Vector3(-1, 1, 0) * randomPower, ForceMode2D.Impulse);
                 transform.localScale = new Vector3(scale, scale, scale);
                 anim.SetTrigger("Jump");
             }
             else
             {
-                rb.AddForce(new Vector3(1, 1, 0) * jumpPower, ForceMode2D.Impulse);
+                rb.AddForce(new Vector3(1, 1, 0) * randomPower, ForceMode2D.Impulse);
                 transform.localScale = new Vector3(-scale, scale, scale);
                 anim.SetTrigger("Jump");
             }

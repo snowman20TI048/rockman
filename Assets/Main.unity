@@ -1147,11 +1147,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: bdc112ace5557714eab86ebf7642cb6e, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1243,11 +1243,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 40133eaa1668ca243a3c1c4221803424, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3946,6 +3946,7 @@ MonoBehaviour:
   resultPopUpPrefab: {fileID: 5435047325070657664, guid: 3d6c814c30eaf854d8b080121d71a51a, type: 3}
   canvasTran: {fileID: 1941598235}
   btnInfo: {fileID: 871369140}
+  audioManager: {fileID: 621164435}
 --- !u!4 &1103759579
 Transform:
   m_ObjectHideFlags: 0
@@ -5183,7 +5184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734729704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.03, y: -1.247, z: 0}
+  m_LocalPosition: {x: 49.123, y: -3.1, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 794685036}
@@ -7680,14 +7681,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc370985a69adc40b38a1cd7417f22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 10
+  Hp: 15
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   isGrounded: 1
-  jumpPower: 1000
   time: 0
   loadtime: 0
-  span: 3
+  span: 2.5
   playerController: {fileID: 1734729710}
   uiManager: {fileID: 1103759578}

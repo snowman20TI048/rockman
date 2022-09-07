@@ -22,11 +22,17 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button btnInfo;
 
+    [Header("BGM")]
+    [SerializeField]
+    private AudioManager audioManager;              // ヒエラルキーにある AudioManager スクリプトのアタッチされているゲームオブジェクトをアサイン
+
     /// <summary>
     /// ゲームオーバー表示
     /// </summary>
     public void DisplayGameOverInfo()
     {
+        // ゲームオーバー曲再生
+        StartCoroutine(audioManager.PlayBGM(2));
 
         // InfoBackGround ゲームオブジェクトの持つ CanvasGroup コンポーネントの Alpha の値を、1秒かけて 1 に変更して、背景と文字が画面に見えるようにする
         canvasGroupInfo.DOFade(1.0f, 1.0f);
@@ -46,6 +52,8 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void GenerateResultPopUp()
     {
+       
+
         // ResultPopUp を生成
         ResultPopUp resultPopUp = Instantiate(resultPopUpPrefab, canvasTran, false);
 

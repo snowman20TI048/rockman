@@ -273,6 +273,9 @@ public class PlayerController : MonoBehaviour
 
     public void GameOver()
     {
+        // メイン曲再生
+        StartCoroutine(audioManager.PlayBGM(2));
+
         isGameOver = true;
 
         //ConsoleビューにisGameOver変数の値を表示する。ここが実行されるとtrueと表示される。
