@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour
 
     public void GameOver()
     {
-        // メイン曲再生
+        // ゲームオーバー再生
         StartCoroutine(audioManager.PlayBGM(2));
 
         isGameOver = true;

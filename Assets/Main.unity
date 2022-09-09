@@ -1135,8 +1135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSources:
   - {fileID: 621164438}
-  - {fileID: 621164438}
-  - {fileID: 621164438}
+  - {fileID: 621164437}
+  - {fileID: 621164436}
 --- !u!82 &621164436
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5184,7 +5184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734729704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.123, y: -3.1, z: 0}
+  m_LocalPosition: {x: -10.095, y: -1.187, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 794685036}
